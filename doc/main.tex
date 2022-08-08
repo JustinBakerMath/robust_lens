@@ -1,0 +1,153 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{settings}
+
+%%%%%%%%%
+% TITLE %
+%%%%%%%%%
+\title{Robust Focusing of Heat Flux\\ Through a Thermal Lens}
+\date{}
+
+%%%%%%%%%%%%
+% DOCUMENT %
+%%%%%%%%%%%%
+\begin{document}
+\maketitle
+
+%%%%%%%%%%%%
+% ABSTRACT %
+%%%%%%%%%%%%
+\begin{abstract}
+    
+\end{abstract}
+
+%%%%%%%%%
+% INTRO %
+%%%%%%%%%
+\section{Introduction}
+
+\subsection{Notation}
+
+%%%%%%%%
+% BODY %
+%%%%%%%%
+\section{Robust Thermal Lens}
+
+A thermal lens is the optimal distribution of non-homogeneous materials $\chi_1$ and $\chi_2$ such that the energy functional
+
+\begin{align*}
+	J = \int_{\Gamma_3}\rho(\Gamma)q\cdot n(\Gamma)d\Gamma
+\end{align*}
+
+is maximized.
+
+
+The thermal lens is made robust by subjecting the constraint that the energies imposed by the fluxes $q_1$ and $q_2$ are equivalent.
+
+\begin{align*}
+	J &= \int_{\Gamma_3}\rho(\Gamma)q\cdot n(\Gamma)d\Gamma \\
+	\text{s.t. } & \int_{\Gamma_3}\rho(\Gamma)q_1\cdot n(\Gamma)d\Gamma = \int_{\Gamma_3}\rho(\Gamma)q_2\cdot n(\Gamma)d\Gamma 
+\end{align*}
+
+
+%%%%%%%%%%%
+% RESULTS %
+%%%%%%%%%%%
+\section{Numerical Results}
+
+%%%%%%%%%%%%%%%%
+% BIBLIOGRAPHY %
+%%%%%%%%%%%%%%%%
+\newpage
+\bibliographystyle{abbrv}
+\bibliography{references.bib}
+
+%%%%%%%%%%%%
+% APPENDIX %
+%%%%%%%%%%%%
+\newpage
+\begin{appendix}
+\section{Algorithms}
+\begin{align*}
+\lambda_+ &= \alpha\theta+\beta(1-\theta)\\[2ex]
+\lambda_- &= \bigg(\frac{\theta}{\alpha} + \frac{1-\theta}{\beta}\bigg)^{-1}
+\end{align*}
+
+\begin{align*}
+A^* &= \begin{pmatrix} \cos(\phi) & \sin(\phi)\\ -\sin(\phi) & \cos(\phi)\end{pmatrix}
+\begin{pmatrix} \lambda_+ & 0\\ 0 & \lambda_-\end{pmatrix}
+\begin{pmatrix} \cos(\phi) & -\sin(\phi)\\ \sin(\phi) & \cos(\phi)\end{pmatrix}\\[2ex]
+&=\begin{pmatrix}
+\lambda_+\cos^2(\phi)+\lambda_-\sin^2(\phi) & (-\lambda_++\lambda_-)\sin(\phi)\cos(\phi)
+\\ (-\lambda_++\lambda_-)\sin(\phi)\cos(\phi) & \lambda_+\sin^2(\phi)+\lambda_-\cos^2(\phi)
+\end{pmatrix}\end{align*}
+
+\begin{align*}
+\frac{\partial\lambda_-}{\partial\theta} &= -\bigg(\frac{1}{\alpha} - \frac{1}{\beta}\bigg)\bigg(\frac{\theta}{\alpha} + \frac{1-\theta}{\beta}\bigg)^{-2}\\
+\frac{\partial\lambda_+}{\partial\theta} &= \alpha-\beta\\
+\end{align*}
+
+\begin{align*}
+\frac{\partial A}{\partial\theta} &= \begin{pmatrix} \cos(\phi) & \sin(\phi)\\ -\sin(\phi) & \cos(\phi)\end{pmatrix}
+\begin{pmatrix} \frac{\partial\lambda_+}{\partial\theta} & 0\\ 0 & \frac{\partial\lambda_-}{\partial\theta}\end{pmatrix}
+\begin{pmatrix} \cos(\phi) & -\sin(\phi)\\ \sin(\phi) & \cos(\phi)\end{pmatrix}\\
+\end{align*}
+
+\begin{align*}
+\frac{\partial A}{\partial\phi} &= \begin{pmatrix} (-\lambda_++\lambda_-)(2\cos(\phi)\sin(\phi)) & (-\lambda_++\lambda_-)(\cos^2(\phi)-\sin^2(\phi))
+\\ (-\lambda_++\lambda_-)(\cos^2(\phi)-\sin^2(\phi)) & (\lambda_+-\lambda_-)(2\cos(\phi)\sin(\phi)) \end{pmatrix}\end{align*}
+
+* Solve $u$
+
+\begin{align*}
+-\nabla \cdot (A^* \nabla u) &= 0\\
+\frac{d}{dn}(A^*\nabla u)\vert_{\Gamma_1} &= 1\\
+\frac{d}{dn}(A^*\nabla u)\vert_{\Gamma_2} &= 0\\
+u\vert_{\Gamma_3}&=0
+\end{align*}
+
+* Solve $p$
+
+\begin{align*}
+\nabla \cdot (A^* \nabla p) &= 0\\
+\frac{d}{dn}(A^*\nabla p)\vert_{\Gamma_1} &= 0\\
+\frac{d}{dn}(A^*\nabla p)\vert_{\Gamma_2} &= 0\\
+p\vert_{\Gamma_3}&=\rho
+\end{align*}
+
+
+* Update $\theta$
+\begin{align*}
+\theta_{k+1} = \max \bigg( 0,\min \bigg(1,\theta_k-t_k\bigg(\ell_k+\frac{\partial A^*}{\partial \theta}(\theta_k,\phi_k)\nabla u_k\cdot \nabla p_k\bigg) \bigg)\bigg)\end{align*}
+
+* Update $\phi$
+\begin{align*}
+\phi_{k+1} = \phi_k-t_k\frac{\partial A^*}{\partial \theta}(\theta_k,\phi_k)\nabla u_k\cdot \nabla p_k\end{align*}
+
+**Extended Functional**
+
+\begin{align*}
+J = \int_{\Gamma_3}\rho(\Gamma)q\cdot n(\Gamma)d\Gamma + \iint_S \mu \nabla\cdot (D_0\nabla T)ds
+\end{align*}
+
+**Primal**
+
+\begin{align*}
+-\nabla \cdot (A^* \nabla u) &= 0\\
+\frac{d}{dn}(A^*\nabla u)\vert_{\Gamma_1} &= 1\\
+\frac{d}{dn}(A^*\nabla u)\vert_{\Gamma_2} &= 0\\
+u\vert_{\Gamma_3}&=0
+\end{align*}
+
+**Dual**
+
+\begin{align*}
+\nabla \cdot (A^* \nabla p) &= 0\\
+\frac{d}{dn}(A^*\nabla p)\vert_{\Gamma_1} &= 0\\
+\frac{d}{dn}(A^*\nabla p)\vert_{\Gamma_2} &= 0\\
+p\vert_{\Gamma_3}&=\rho
+\end{align*}
+
+\end{appendix}
+
+\end{document}
