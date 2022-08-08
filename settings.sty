@@ -1,0 +1,177 @@
+\ProvidesPackage{settings}
+
+%%%%%%%%%%%%
+% PACKAGES %
+%%%%%%%%%%%%
+\usepackage{algpseudocode}
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{hhline}
+\usepackage{hyperref}       % hyperlinks
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{microtype}      % microtypography
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{natbib}
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{sidecap}
+\usepackage{tabularx}
+\usepackage{tcolorbox}
+\usepackage{threeparttable}
+\usepackage{xcolor}         % colors
+\usepackage{url}            % simple URL typesetting
+\usepackage{verbatim}
+\usepackage{wrapfig}
+
+%%%%%%%%%%%%
+% SETTINGS %
+%%%%%%%%%%%%
+\pagestyle{fancy}
+
+%%%%%%%%%%%%%%%%
+% ENVIRONMENTS %
+%%%%%%%%%%%%%%%%
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+\newtheorem{theorem}{Theorem}
+
+%%%%%%%%%%%%
+% COMMANDS %
+%%%%%%%%%%%%
+% User Comments
+\newcommand{\Justin}[1]{{\leavevmode\color{cyan}{#1}}}
+% Notes
+\newcommand{\purplenote}[2]{\begin{tcolorbox}[colback=red!5!blue!5!white,colframe=red!43!blue!45!black,title=#1]{ #2 }\end{tcolorbox}}
+\newcommand{\bluenote}[2]{\begin{tcolorbox}[colback=blue!5!white,colframe=blue!35!black,title=#1]{ #2 }\end{tcolorbox}}
+\newcommand{\greennote}[2]{\begin{tcolorbox}[colback=green!5!white,colframe=green!40!black,title=#1]{ #2 }\end{tcolorbox}}
+% Math Text
+\newcommand{\argmin}{\textrm{argmin}}
+\newcommand{\bs}[1]{\boldsymbol #1}
+\newcommand{\eqdef}{\mathrel{\mathop:}=}
+\newcommand{\nd}[1]{{\footnotesize \bb #1 \eb}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\ppx}[1]{\frac{\partial}{\partial #1}}
+\newcommand{\pfpx}[2]{\frac{\partial #1}{\partial #2}}
+% Matrices
+\newcommand{\bp}{\begin{pmatrix}}
+\newcommand{\ep}{\end{pmatrix}}
+\newcommand{\bb}{\begin{bmatrix}}
+\newcommand{\eb}{\end{bmatrix}}
+
+%%%%%%%%%%%%
+% NOTATION %
+%%%%%%%%%%%%
+% Vectors
+\def\vzero{{\bm{0}}}
+\def\vone{{\bm{1}}}
+\def\vmu{{\bm{\mu}}}
+\def\vtheta{{\bm{\theta}}}
+\def\va{{\bm{a}}}
+\def\vb{{\bm{b}}}
+\def\vc{{\bm{c}}}
+\def\vd{{\bm{d}}}
+\def\ve{{\bm{e}}}
+\def\vf{{\bm{f}}}
+\def\vg{{\bm{g}}}
+\def\vh{{\bm{h}}}
+\def\vi{{\bm{i}}}
+\def\vj{{\bm{j}}}
+\def\vk{{\bm{k}}}
+\def\vl{{\bm{l}}}
+\def\vm{{\bm{m}}}
+\def\vn{{\bm{n}}}
+\def\vo{{\bm{o}}}
+\def\vp{{\bm{p}}}
+\def\vq{{\bm{q}}}
+\def\vr{{\bm{r}}}
+\def\vs{{\bm{s}}}
+\def\vt{{\bm{t}}}
+\def\vu{{\bm{u}}}
+\def\vv{{\bm{v}}}
+\def\vw{{\bm{w}}}
+\def\vx{{\bm{x}}}
+\def\vy{{\bm{y}}}
+\def\vz{{\bm{z}}}
+\newcommand{\tc}{\tilde{\vc}}
+\newcommand{\tb}{\tilde{\vb}}
+\newcommand{\blam}{\overline{\lambda}}
+% Matrix
+\def\mA{{\bm{A}}}
+\def\mB{{\bm{B}}}
+\def\mC{{\bm{C}}}
+\def\mD{{\bm{D}}}
+\def\mE{{\bm{E}}}
+\def\mF{{\bm{F}}}
+\def\mG{{\bm{G}}}
+\def\mH{{\bm{H}}}
+\def\mI{{\bm{I}}}
+\def\mJ{{\bm{J}}}
+\def\mK{{\bm{K}}}
+\def\mL{{\bm{L}}}
+\def\mM{{\bm{M}}}
+\def\mN{{\bm{N}}}
+\def\mO{{\bm{O}}}
+\def\mP{{\bm{P}}}
+\def\mQ{{\bm{Q}}}
+\def\mR{{\bm{R}}}
+\def\mS{{\bm{S}}}
+\def\mT{{\bm{T}}}
+\def\mU{{\bm{U}}}
+\def\mV{{\bm{V}}}
+\def\mW{{\bm{W}}}
+\def\mX{{\bm{X}}}
+\def\mY{{\bm{Y}}}
+\def\mZ{{\bm{Z}}}
+\newcommand{\tS}{\tilde{\mS}}
+\newcommand{\tM}{\tilde{\mM}}
+\newcommand{\tT}{\tilde{\mT}}
+\newcommand{\tQ}{\tilde{\mQ}}
+\newcommand{\bF}{\overline{\mF}}
+% Styled
+\def \cM {{\mathcal{M}}}
+\def \cS {{\mathcal{S}}}
+\def \cR {{\mathcal{R}}}
+\def \PP {{\mathbb{P}}}
+\def \RR {{\mathbb{R}}}
+\def \EE {{\mathbb{E}}}
+\def \Ib {{\mathbf{Ib}}}
+\def \ub {{\mathbf{u}}}
+\def \wb {{\mathbf w}} 
+\def \nb {{\mathbf n}} 
+\def \bX {{\bm X}}
+\def \bx {{\bm x}}
+\def \by {{\bm y}}
+\def \bv {{\bm v}}
+\def \bv {\mathbf{v}}
+\def \Ib {{\mathbf{I}}}
+\def \Ab {{\mathbf{A}}}
+\def \Bb {{\mathbf{B}}}
+\def \Db {{\mathbf{D}}}
+\def \Mb {{\mathbf{M}}}
+\def \Ub {{\mathbf{U}}}
+\def \Qb {{\mathbf{Q}}}
+\def \Wb {{\mathbf{W}}}
+\def \Vb {{\mathbf{V}}}
+\def \bLambda {{\bm \Lambda}}
+% Math
+\def\lc{\left\lceil}  
+\def\rc{\right\rceil}
+\def\lf{\left\lfloor}  
+\def\rf{\right\rfloor}
+% Special
+\let\d\relax
+\newcommand{\d}{\vd}
+\let\L\relax
+\newcommand{\L}{\mL}
+\let\t\relax
+\newcommand{\t}{\top}
