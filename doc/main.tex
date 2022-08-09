@@ -26,6 +26,12 @@
 %%%%%%%%%
 \section{Introduction}
 
+A thermal lens is the optimal distribution of non-homogeneous materials $\chi_1$ and $\chi_2$ such that the energy functional is maximized.
+\begin{align*}
+	J = \int_{\Gamma_3}\rho(\Gamma)q\cdot n(\Gamma)d\Gamma
+\end{align*}
+
+
 \subsection{Notation}
 
 %%%%%%%%
@@ -33,17 +39,7 @@
 %%%%%%%%
 \section{Robust Thermal Lens}
 
-A thermal lens is the optimal distribution of non-homogeneous materials $\chi_1$ and $\chi_2$ such that the energy functional
-
-\begin{align*}
-	J = \int_{\Gamma_3}\rho(\Gamma)q\cdot n(\Gamma)d\Gamma
-\end{align*}
-
-is maximized.
-
-
-The thermal lens is made robust by subjecting the constraint that the energies imposed by the fluxes $q_1$ and $q_2$ are equivalent.
-
+The thermal lens is made robust by segmenting the flux into components $q=q_1+q_2$ and subjecting the energy functional to an equivalence constraint for the segmented fluxes.
 \begin{align*}
 	J &= \int_{\Gamma_3}\rho(\Gamma)q\cdot n(\Gamma)d\Gamma \\
 	\text{s.t. } & \int_{\Gamma_3}\rho(\Gamma)q_1\cdot n(\Gamma)d\Gamma = \int_{\Gamma_3}\rho(\Gamma)q_2\cdot n(\Gamma)d\Gamma 
